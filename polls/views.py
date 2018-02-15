@@ -67,3 +67,27 @@ class LoginView(generic.FormView):
         return super(LoginView, self).form_valid(form)
 
         login(self.request, user)
+
+class InscriptionView(generic.FormView):
+    template_name = 'inscription.html'
+    form_class = LoginForms
+    success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+
+        if username is None:
+            form.add_error('username',
+                           'Username vide ')
+            return super(LoginView, self).form_invalid(form)
+
+
+        user = authenticate(username=username,
+                            password=password)
+        if user is None:
+            form.add_error(None,
+                           'Erreur de connexion')
+        return super(LoginView, self).form_valid(form)
+
+        login(self.request, user)

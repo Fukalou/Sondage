@@ -1,14 +1,11 @@
 from django.contrib import admin
 
-from polls.models import Question, Choice, Sondage
+from polls.models import Question, Choice
 
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
     extra = 3
-
-class QuestionInline(admin.TabularInline):
-    model = Question
 
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -20,9 +17,4 @@ class QuestionAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
     search_fields = ['question_text']
 
-class SondageAdmin(admin.ModelAdmin):
-    inlines = [QuestionInline]
-    search_fields = ['question_text']
-
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(Sondage, SondageAdmin)
