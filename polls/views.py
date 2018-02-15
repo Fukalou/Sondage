@@ -45,7 +45,7 @@ def vote(request, question_id):
 
 
 class LoginView(generic.FormView):
-    template_name = 'login.html'
+    template_name = 'polls/login.html'
     form_class = LoginForms
     success_url = reverse_lazy('index')
 
@@ -69,7 +69,7 @@ class LoginView(generic.FormView):
         login(self.request, user)
 
 class InscriptionView(generic.FormView):
-    template_name = 'inscription.html'
+    template_name = 'polls/inscription.html'
     form_class = LoginForms
     success_url = reverse_lazy('index')
 
